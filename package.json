@@ -1,0 +1,17 @@
+{
+  "name": "nextk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.2.4",
+    "lodash": "^4.17.15",
+    "mathjs": "^6.5.0",
+    "pkg": "^4.4.2"
+  }
+}
