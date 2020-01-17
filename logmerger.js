@@ -47,7 +47,7 @@ send_by_log = () => {
     writeStr += `size mean: ${size_mean}, size std: ${size_std}\ndirection mean:${mathjs.mean(directions)}, direction std: ${mathjs.std(directions)}\nvelocity mean: ${mathjs.mean(velocities)}, velocity std: ${mathjs.std(velocities)}\n`
     writeStr += `grid_count: ${grid_count}, grid_list: ${list['grid']}\n`
 
-    fs.appendFile(`camera_id_before.txt`, writeStr);
+    fs.appendFileSync(`camera_id_before.txt`, writeStr);
     time_user_objs[keys[i]] = list;
 
     delete send_objs[keys[i]];
@@ -63,22 +63,22 @@ main = () => {
   const GRID_X_NUM = config.get('GRID_X_NUM');
   const GRID_Y_NUM = config.get('GRID_Y_NUM');
   const LIST_DELIMITER = config.get('LIST_DELIMITER');
-  const GRID_NUM = 12;
 
-  net.createServer(async function (sock) {
-    sock.on("error", function (err) { })
+  net.createServer(function (sock) {
     console.log("connected");
-
+    sock.on("error", function (err) { })
     setInterval(function () {
       // console.log(JSON.stringify(time_user_objs));
       let users = Object.keys(time_user_objs);
       for (let i = 0; i < users.length; i++) {
-        fs.appendFileSync(`camera_id_after.txt`, `${users[i]} finished\n`);
+        fs.appendFileSync(`camera_id_after.txt`, `${users[i]} finished\n`, (error) => {
+          console.log(`write error`);
+        });
       }
       time_user_objs = {};
     }, TIME_GRID_INTERVAL);
 
-    sock.on('data', async function (data) {
+    sock.on('data',function (data) {
 
       let data_str = data.toString('utf8');
       let datas = data_str.split('\n');
@@ -88,9 +88,6 @@ main = () => {
         let cols = datas[i].split('\t');
         if (cols.length < 5) {
           continue;
-        }
-        for (let m = 0 ; m < cols.length ; m ++) {
-          console.log(`${m}: ${cols[m]}`);
         }
 
         const camera_id = cols[5];
@@ -112,14 +109,14 @@ main = () => {
         const video_timestamp = parseInt(cols[13], 10);
         const video_width = parseInt(cols[11], 10);
         const video_height = parseInt(cols[12], 10);
-        let diff_y = video_height / GRID_NUM;
-        let diff_x = video_width / GRID_NUM;
-        console.log(`width:${video_width},height:${video_height}`);
-        console.log(`x 셀크기 ${diff_x}, y 셀크기 ${diff_y}`);
+        let diff_y = video_height / GRID_Y_NUM;
+        let diff_x = video_width / GRID_X_NUM;
+        // console.log(`width:${video_width},height:${video_height}`);
+        // console.log(`x 셀크기 ${diff_x}, y 셀크기 ${diff_y}`);
 
         let grid_x = Math.ceil(object_x / diff_x);
         let grid_y = Math.ceil(object_y / diff_y);
-        console.log(`${grid_x}-${grid_y}`);
+        // console.log(`${grid_x}-${grid_y}`);
         if (grid_x < 10) {
           grid_x = `0${grid_x}`;
         }
@@ -131,7 +128,6 @@ main = () => {
         // if (event_type === 4) {
         //   // 화재영상
         // } else if (event_type === 0) {
-        return;
         if (object_result === 1) {
           // 등장로그
 
@@ -156,7 +152,6 @@ main = () => {
           if (!objs[object_id]) {
             return;
           }
-          console.log(`end - ${object_id}`);
           objs[object_id]['timestamp'].push(video_timestamp);
           objs[object_id]['x'].push(object_x);
           objs[object_id]['y'].push(object_y);
