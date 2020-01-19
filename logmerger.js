@@ -25,7 +25,7 @@ send_by_log = () => {
     const green_std = mathjs.std(list['green']);
     const size_mean = mathjs.mean(list['size']);
     const size_std = mathjs.std(list['size']);
-
+    const camera_id = list['camera_id'];
     let x_s = list['x'];
     let y_s = list['y'];
 
@@ -43,9 +43,9 @@ send_by_log = () => {
     const log_count = list['grid'].length;
     const grid_count = list['grid'].filter((v, i, a) => a.indexOf(v) === i).length;
     // before file mean
-    let writeStr = `---${keys[i]}---\nred mean: ${red_mean}, red_std: ${red_std}\ngreen mean: ${green_mean}, green std: ${green_std}\nblue mean: ${blue_mean}, blue std: ${blue_std}\n`
+    let writeStr = `--- camera_id:${camera_id[0]}, object_id:${keys[i]} ---\nred mean: ${red_mean}, red_std: ${red_std}\ngreen mean: ${green_mean}, green std: ${green_std}\nblue mean: ${blue_mean}, blue std: ${blue_std}\n`
     writeStr += `size mean: ${size_mean}, size std: ${size_std}\ndirection mean:${mathjs.mean(directions)}, direction std: ${mathjs.std(directions)}\nvelocity mean: ${mathjs.mean(velocities)}, velocity std: ${mathjs.std(velocities)}\n`
-    writeStr += `grid_count: ${grid_count}, grid_list: ${list['grid']}\n`
+    writeStr += `log_count: ${camera_id.length}, grid_count: ${grid_count}, grid_list: ${list['grid']}\n`
 
     fs.appendFileSync(`camera_id_before.txt`, writeStr);
     time_user_objs[keys[i]] = list;
@@ -125,6 +125,9 @@ main = () => {
         }
         let grid = `${grid_y}${grid_x}`;
 
+        if (event_type !== 4) {
+          continue;
+        }
         // if (event_type === 4) {
         //   // 화재영상
         // } else if (event_type === 0) {
@@ -133,7 +136,7 @@ main = () => {
 
           console.log(`${object_id} START`);
 
-          objs[object_id] = { timestamp: [], width: [], height: [], x: [], y: [], red: [], blue: [], green: [], grid: [], size: [] };
+          objs[object_id] = { timestamp: [], width: [], height: [], x: [], y: [], red: [], blue: [], green: [], grid: [], size: [], camera_id: [] };
           objs[object_id]['timestamp'].push(video_timestamp);
           objs[object_id]['x'].push(object_x);
           objs[object_id]['y'].push(object_y);
@@ -144,6 +147,7 @@ main = () => {
           objs[object_id]['green'].push(parseInt(colors[2], 10));
           objs[object_id]['grid'].push(grid);
           objs[object_id]['size'].push(object_size);
+          objs[object_id]['camera_id'].push(camera_id); // 추후 카메라랑 object id랑 종속관계를 바꿈
 
         } else if (object_result === -1) {
           // 종료로그
@@ -162,6 +166,8 @@ main = () => {
           objs[object_id]['green'].push(parseInt(colors[2], 10));
           objs[object_id]['grid'].push(grid);
           objs[object_id]['size'].push(object_size);
+          objs[object_id]['camera_id'].push(camera_id); // 추후 카메라랑 object id랑 종속관계를 바꿈
+
 
           let result = objs[object_id];
           send_objs[object_id] = result;
@@ -181,6 +187,8 @@ main = () => {
           objs[object_id]['green'].push(parseInt(colors[2], 10));
           objs[object_id]['grid'].push(grid);
           objs[object_id]['size'].push(object_size);
+          objs[object_id]['camera_id'].push(camera_id); // 추후 카메라랑 object id랑 종속관계를 바꿈
+
 
         }
 
