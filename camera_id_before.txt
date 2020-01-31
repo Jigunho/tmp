@@ -1,264 +1,144 @@
----11---
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 161, red_std: 0
 green mean: 75, green std: 0
 blue mean: 89, blue std: 0
 size mean: 1044, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----9---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:9 ---
 red mean: 138, red_std: 0
 green mean: 64, green std: 0
 blue mean: 67, blue std: 0
 size mean: 1102, size std: 0
-direction mean:0.7853981633974487, direction std: 4.5406998884937715e-16
+direction mean:0.7853981633974487, direction std: 4.532466518368395e-16
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
+log_count: 25, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 255, red_std: 0
 green mean: 140, green std: 0
 blue mean: 194, blue std: 0
 size mean: 896, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
----11---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 44, red_std: 0
 green mean: 34, green std: 0
 blue mean: 32, blue std: 0
 size mean: 1148, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 200, red_std: 0
 green mean: 71, green std: 0
 blue mean: 122, blue std: 0
 size mean: 504, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
----11---
+log_count: 10, grid_count: 2, grid_list: 0110,0110,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 231, red_std: 0
 green mean: 127, green std: 0
 blue mean: 163, blue std: 0
 size mean: 600, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
----11---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 156, red_std: 0
 green mean: 29, green std: 0
 blue mean: 77, blue std: 0
 size mean: 825, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----9---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:9 ---
 red mean: 152, red_std: 0
 green mean: 73, green std: 0
 blue mean: 78, blue std: 0
 size mean: 1188, size std: 0
 direction mean:0.7853981633974487, direction std: 4.532466518368395e-16
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----10---
+log_count: 25, grid_count: 2, grid_list: 0106,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:10 ---
 red mean: 103, red_std: 0
 green mean: 27, green std: 0
 blue mean: 44, blue std: 0
 size mean: 990, size std: 0
 direction mean:0.7853981633974485, direction std: 2.293266818639604e-16
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
+log_count: 16, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 161, red_std: 0
 green mean: 75, green std: 0
 blue mean: 89, blue std: 0
 size mean: 1044, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----9---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:9 ---
 red mean: 138, red_std: 0
 green mean: 64, green std: 0
 blue mean: 67, blue std: 0
 size mean: 1102, size std: 0
-direction mean:0.7853981633974487, direction std: 4.5406998884937715e-16
+direction mean:0.7853981633974487, direction std: 4.532466518368395e-16
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
+log_count: 25, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 255, red_std: 0
 green mean: 140, green std: 0
 blue mean: 194, blue std: 0
 size mean: 896, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506
----11---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 44, red_std: 0
 green mean: 34, green std: 0
 blue mean: 32, blue std: 0
 size mean: 1148, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 200, red_std: 0
 green mean: 71, green std: 0
 blue mean: 122, blue std: 0
 size mean: 504, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506
----11---
+log_count: 10, grid_count: 2, grid_list: 0110,0110,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 231, red_std: 0
 green mean: 127, green std: 0
 blue mean: 163, blue std: 0
 size mean: 600, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
----11---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:11 ---
 red mean: 156, red_std: 0
 green mean: 29, green std: 0
 blue mean: 77, blue std: 0
 size mean: 825, size std: 0
 direction mean:0.7853981633974483, direction std: 0
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----9---
+log_count: 10, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:9 ---
 red mean: 152, red_std: 0
 green mean: 73, green std: 0
 blue mean: 78, blue std: 0
 size mean: 1188, size std: 0
-direction mean:0.7853981633974487, direction std: 4.536406081492299e-16
+direction mean:0.7853981633974487, direction std: 4.532466518368395e-16
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----10---
+log_count: 25, grid_count: 2, grid_list: 0106,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
+--- camera_id:16513214504700, object_id:10 ---
 red mean: 103, red_std: 0
 green mean: 27, green std: 0
 blue mean: 44, blue std: 0
 size mean: 990, size std: 0
-direction mean:0.7853981633974485, direction std: 2.298380017448157e-16
+direction mean:0.7853981633974485, direction std: 2.293266818639604e-16
 velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
-red mean: 161, red_std: 0
-green mean: 75, green std: 0
-blue mean: 89, blue std: 0
-size mean: 1044, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
-red mean: 156, red_std: 0
-green mean: 29, green std: 0
-blue mean: 77, blue std: 0
-size mean: 825, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----9---
-red mean: 152, red_std: 0
-green mean: 73, green std: 0
-blue mean: 78, blue std: 0
-size mean: 1188, size std: 0
-direction mean:0.7853981633974485, direction std: 2.298380017448157e-16
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
-red mean: 161, red_std: 0
-green mean: 75, green std: 0
-blue mean: 89, blue std: 0
-size mean: 1044, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----9---
-red mean: 138, red_std: 0
-green mean: 64, green std: 0
-blue mean: 67, blue std: 0
-size mean: 1102, size std: 0
-direction mean:0.7853981633974486, direction std: 3.4171943677557405e-16
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
-red mean: 44, red_std: 0
-green mean: 34, green std: 0
-blue mean: 32, blue std: 0
-size mean: 1148, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
-red mean: 200, red_std: 0
-green mean: 71, green std: 0
-blue mean: 122, blue std: 0
-size mean: 504, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506
----11---
-red mean: 231, red_std: 0
-green mean: 127, green std: 0
-blue mean: 163, blue std: 0
-size mean: 600, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506
----9---
-red mean: 152, red_std: 0
-green mean: 73, green std: 0
-blue mean: 78, blue std: 0
-size mean: 1188, size std: 0
-direction mean:0.7853981633974486, direction std: 3.412920201770619e-16
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----10---
-red mean: 103, red_std: 0
-green mean: 27, green std: 0
-blue mean: 44, blue std: 0
-size mean: 990, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----9---
-red mean: 138, red_std: 0
-green mean: 64, green std: 0
-blue mean: 67, blue std: 0
-size mean: 1102, size std: 0
-direction mean:0.7853981633974487, direction std: 4.54539797551198e-16
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
-red mean: 44, red_std: 0
-green mean: 34, green std: 0
-blue mean: 32, blue std: 0
-size mean: 1148, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----11---
-red mean: 200, red_std: 0
-green mean: 71, green std: 0
-blue mean: 122, blue std: 0
-size mean: 504, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506
----11---
-red mean: 156, red_std: 0
-green mean: 29, green std: 0
-blue mean: 77, blue std: 0
-size mean: 825, size std: 0
-direction mean:0.7853981633974483, direction std: 0
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
----9---
-red mean: 152, red_std: 0
-green mean: 73, green std: 0
-blue mean: 78, blue std: 0
-size mean: 1188, size std: 0
-direction mean:0.7853981633974486, direction std: 3.4219371797089426e-16
-velocity mean: 0, velocity std: 0
-grid_count: 1, grid_list: 03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN,03NaN
+log_count: 16, grid_count: 1, grid_list: 0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506,0506
