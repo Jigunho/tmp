@@ -12,13 +12,17 @@ var net = require('net')
 let output_connected = false;
 let output_connection = null;
 let OUTPUT_TYPE = null;
-
+let grid_x_size = -1;
+let grid_y_size = -1;
+let area_x_size = -1;
+let area_y_size = -1;
 const area_list = [];
 
+let prev_hour = -1;
 send_by_log = () => {
 
   let keys = Object.keys(send_objs);
-  
+
   for (let i = 0; i < keys.length; i++) {
 
 
@@ -28,7 +32,7 @@ send_by_log = () => {
     const user_timestamp = timestamp[0];
     const grids = list['grid'];
     const areas = list['area'];
-    const camera_id = list['camera_id'];
+    const camera_id = list['camera_id'][0];
 
     const log_count = list['grid'].length;
     const grid_count = list['grid'].filter((v, i, a) => a.indexOf(v) === i).length;
@@ -78,35 +82,70 @@ send_by_log = () => {
     }
 
     for (let j = 0; j < user_grid_list.length; j++) {
+      let grid_id = user_grid_list[j];
       let area_id = grid_area_dictionary[user_grid_list[j]];
       let grid_result = user_grid_result[user_grid_list[j]];
       let count = grid_result.count;
       if (count > 1) {
         // 2개이상일때만 편차 추출 가능
-        let user_grid_red_avg = mathjs.mean(grid_result.red);
-        let user_grid_red_std = mathjs.std(grid_result.red);
 
-        let user_grid_blue_avg = mathjs.mean(grid_result.blue);
-        let user_grid_blue_std = mathjs.std(grid_result.blue);
+        let str = '';
 
-        let user_grid_green_avg = mathjs.mean(grid_result.green);
-        let user_grid_green_std = mathjs.std(grid_result.green);
+        let count = 0;
+        let reds = [];
+        let blues = [];
+        let greens = [];
 
-        let user_grid_size_avg = mathjs.mean(grid_result.size);
-        let user_grid_size_std = mathjs.std(grid_result.size);
 
-        let str = `${user_timestamp}\t${object_id}\t${user_grid_list[j]}\t${area_id}\t`;
-        str += `${user_grid_size_avg}${user_grid_size_std}\t${user_grid_red_avg}\t${user_grid_red_std}\t`
-        str += `${user_grid_green_avg}\t${user_grid_green_std}\t${user_grid_blue_avg}\t${user_grid_blue_std}\t`;
+        for (let m = 0; m < grid_result.imgs; m++) { // 화재난 순간의 영역만 가져오고
+          color.getColor2(grid_result.imgs[m], `grid_${grid_id}.png`, camera_width_height[camera_id].width, camera_width_height[camera_id].height
+            , grid_x_size, grid_y_size, grid_id, function (result) {
+
+              count++;
+              if (result) {
+
+                let [red, green, blue, alpha] = result;
+                reds.push(red);
+                greens.push(green);
+                blues.push(blue);
+
+              }
+
+              if (count === 30) {
+
+
+                let user_grid_red_avg = mathjs.mean(grid_result.red);
+                let user_grid_red_std = mathjs.std(grid_result.red);
+
+                let user_grid_blue_avg = mathjs.mean(grid_result.blue);
+                let user_grid_blue_std = mathjs.std(grid_result.blue);
+
+                let user_grid_green_avg = mathjs.mean(grid_result.green);
+                let user_grid_green_std = mathjs.std(grid_result.green);
+
+                let user_grid_size_avg = mathjs.mean(grid_result.size);
+                let user_grid_size_std = mathjs.std(grid_result.size);
+
+                str = `${user_timestamp}\t${object_id}\t${user_grid_list[j]}\t${area_id}\t`;
+                str += `${user_grid_size_avg}${user_grid_size_std}\t${user_grid_red_avg}\t${user_grid_red_std}\t`
+                str += `${user_grid_green_avg}\t${user_grid_green_std}\t${user_grid_blue_avg}\t${user_grid_blue_std}\t`;
+
+                // let grid color // 해당 그리드의 색상 평균
+
+
+                if (OUTPUT_TYPE && output_connected) {
+                  try {
+                    output_connection.write(str)
+                  } catch (e) {
+                    console.error(e);
+                  }
+                }
+              }
+            })
+        }
+
         // connection write 
 
-        if (OUTPUT_TYPE && output_connected) {
-          try {
-            output_connection.write(str)
-          } catch (e) {
-            console.error(e);
-          }
-        }
       }
     }
 
@@ -117,7 +156,7 @@ send_by_log = () => {
     delete send_objs[keys[i]];
 
 
-    
+
     // const red_mean = mathjs.mean(list['red']);
     // const red_std = mathjs.std(list['red']);
     // const blue_mean = mathjs.mean(list['blue']);
@@ -230,11 +269,11 @@ main = () => {
         const video_width = parseInt(cols[11], 10);
         const video_height = parseInt(cols[12], 10);
         const img_data = cols[13];
-        let grid_y_size = video_height / GRID_Y_NUM;
-        let grid_x_size = video_width / GRID_X_NUM;
+        grid_y_size = video_height / GRID_Y_NUM;
+        grid_x_size = video_width / GRID_X_NUM;
 
-        let area_x_size = video_width / AREA_X_NUM;
-        let area_y_size = video_height / AREA_Y_NUM;
+        area_x_size = video_width / AREA_X_NUM;
+        area_y_size = video_height / AREA_Y_NUM;
         // console.log(`width:${video_width},height:${video_height}`);
         // console.log(`x 셀크기 ${diff_x}, y 셀크기 ${diff_y}`);
 
@@ -248,72 +287,93 @@ main = () => {
 
 
         
-
-
-        if (object_result === 1) {
-          // 등장로그
-          console.log(`${object_id} START`);
-
-          objs[object_id] = { timestamp: [], width: [], height: [], x: [], y: [], red: [], blue: [], green: [], grid: [], size: [], camera_id: [], area: [], imgs: [] };
-          objs[object_id]['timestamp'].push(video_timestamp);
-          objs[object_id]['x'].push(object_x);
-          objs[object_id]['y'].push(object_y);
-          objs[object_id]['width'].push(object_width);
-          objs[object_id]['height'].push(object_height);
-          objs[object_id]['red'].push(parseInt(colors[0], 10));
-          objs[object_id]['blue'].push(parseInt(colors[1], 10));
-          objs[object_id]['green'].push(parseInt(colors[2], 10));
-          objs[object_id]['grid'].push(grid);
-          objs[object_id]['size'].push(object_size);
-          objs[object_id]['camera_id'].push(camera_id);
-          objs[object_id]['area'].push(area_id);
-          objs[object_id]['imgs'].push(img_data);
-
-        } else if (object_result === -1) {
-          // 종료로그
-          console.log(`${object_id} END`);
-
-          if (!objs[object_id]) {
-            return;
+        if (OUTPUT_TYPE && output_connected) {
+          try {
+            output_connection.write(str)
+          } catch (e) {
+            console.error(e);
           }
-          objs[object_id]['timestamp'].push(video_timestamp);
-          objs[object_id]['x'].push(object_x);
-          objs[object_id]['y'].push(object_y);
-          objs[object_id]['width'].push(object_width);
-          objs[object_id]['height'].push(object_height);
-          objs[object_id]['red'].push(parseInt(colors[0], 10));
-          objs[object_id]['blue'].push(parseInt(colors[1], 10));
-          objs[object_id]['green'].push(parseInt(colors[2], 10));
-          objs[object_id]['grid'].push(grid);
-          objs[object_id]['size'].push(object_size);
-          objs[object_id]['camera_id'].push(camera_id); // 추후 카메라랑 object id랑 종속관계를 바꿈
-          objs[object_id]['area'].push(area_id);
-          objs[object_id]['imgs'].push(img_data);
-
-
-          let result = objs[object_id];
-          send_objs[object_id] = result;
-          send_by_log();
-          delete objs[object_id];
-        } else if (object_result === 0) {
-          if (!objs[object_id]) {
-            return;
-          }
-          objs[object_id]['timestamp'].push(video_timestamp);
-          objs[object_id]['x'].push(object_x);
-          objs[object_id]['y'].push(object_y);
-          objs[object_id]['width'].push(object_width);
-          objs[object_id]['height'].push(object_height);
-          objs[object_id]['red'].push(parseInt(colors[0], 10));
-          objs[object_id]['blue'].push(parseInt(colors[1], 10));
-          objs[object_id]['green'].push(parseInt(colors[2], 10));
-          objs[object_id]['grid'].push(grid);
-          objs[object_id]['size'].push(object_size);
-          objs[object_id]['camera_id'].push(camera_id); // 추후 카메라랑 object id랑 종속관계를 바꿈
-          objs[object_id]['area'].push(area_id);
-          objs[object_id]['imgs'].push(img_data);
-
         }
+
+        if (object_type === 1000) {
+          // 객체가없는 frame 이미지
+          
+          // get image 
+
+
+        } else {
+
+          // 화재 or 일반 객체
+
+          if (object_result === 1) {
+            // 등장로그
+            console.log(`${object_id} START`);
+  
+            objs[object_id] = { timestamp: [], width: [], height: [], x: [], y: [], red: [], blue: [], green: [], grid: [], size: [], camera_id: [], area: [], imgs: [] };
+            objs[object_id]['timestamp'].push(video_timestamp);
+            objs[object_id]['x'].push(object_x);
+            objs[object_id]['y'].push(object_y);
+            objs[object_id]['width'].push(object_width);
+            objs[object_id]['height'].push(object_height);
+            objs[object_id]['red'].push(parseInt(colors[0], 10));
+            objs[object_id]['blue'].push(parseInt(colors[1], 10));
+            objs[object_id]['green'].push(parseInt(colors[2], 10));
+            objs[object_id]['grid'].push(grid);
+            objs[object_id]['size'].push(object_size);
+            objs[object_id]['camera_id'].push(camera_id);
+            objs[object_id]['area'].push(area_id);
+            objs[object_id]['imgs'].push(img_data);
+  
+          } else if (object_result === -1) {
+            // 종료로그
+            console.log(`${object_id} END`);
+  
+            if (!objs[object_id]) {
+              return;
+            }
+            objs[object_id]['timestamp'].push(video_timestamp);
+            objs[object_id]['x'].push(object_x);
+            objs[object_id]['y'].push(object_y);
+            objs[object_id]['width'].push(object_width);
+            objs[object_id]['height'].push(object_height);
+            objs[object_id]['red'].push(parseInt(colors[0], 10));
+            objs[object_id]['blue'].push(parseInt(colors[1], 10));
+            objs[object_id]['green'].push(parseInt(colors[2], 10));
+            objs[object_id]['grid'].push(grid);
+            objs[object_id]['size'].push(object_size);
+            objs[object_id]['camera_id'].push(camera_id); // 추후 카메라랑 object id랑 종속관계를 바꿈
+            objs[object_id]['area'].push(area_id);
+            objs[object_id]['imgs'].push(img_data);
+  
+  
+            let result = objs[object_id];
+            send_objs[object_id] = result;
+            send_by_log();
+            delete objs[object_id];
+          } else if (object_result === 0) {
+            if (!objs[object_id]) {
+              return;
+            }
+            objs[object_id]['timestamp'].push(video_timestamp);
+            objs[object_id]['x'].push(object_x);
+            objs[object_id]['y'].push(object_y);
+            objs[object_id]['width'].push(object_width);
+            objs[object_id]['height'].push(object_height);
+            objs[object_id]['red'].push(parseInt(colors[0], 10));
+            objs[object_id]['blue'].push(parseInt(colors[1], 10));
+            objs[object_id]['green'].push(parseInt(colors[2], 10));
+            objs[object_id]['grid'].push(grid);
+            objs[object_id]['size'].push(object_size);
+            objs[object_id]['camera_id'].push(camera_id); // 추후 카메라랑 object id랑 종속관계를 바꿈
+            objs[object_id]['area'].push(area_id);
+            objs[object_id]['imgs'].push(img_data);
+  
+          }
+  
+  
+        }
+
+        
 
       }
 

@@ -10,9 +10,6 @@ main = async () => {
     profile.getColor(origin, `./output/${i}.png`, 1000, 1000, 500, 500, 0, 0, function (result) {
       if (result) {
         cnt ++;
-        // if (cnt === 29) {
-        //   console.log(`cnt 30 : ${i}`);
-        // }
         console.log(`${cnt}, ${i}, ${result}`);
         if (cnt === frame_cnt) {
           let end = new Date().getTime();
