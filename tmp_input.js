@@ -18,9 +18,10 @@ main = () => {
     setInterval(function () {
       for (let i = 0 ; i < ds.length ; i ++) {
         fs.appendFileSync('tmp_output.txt', `${ds[i]}\n`);
+        console.log('write complete');
       }
       ds = [];
-    }, 1000 * 10)
+    }, 1000 * 5)
 
     sock.on('data', function (data) {
 
