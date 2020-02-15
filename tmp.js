@@ -1,25 +1,61 @@
-const profile = require('./extract_color');
+const image_module = require('./compare_image');
 const origin = './sample.png'
 const fs = require('fs');
 main = async () => {
+  let grid_result = {};
 
-  let start = new Date().getTime();
-  let cnt = 0;
-  let frame_cnt = 1000;
-  for (let i = 0; i < frame_cnt; i++) {
-    profile.getColor(origin, `./output/${i}.png`, 1000, 1000, 500, 500, 0, 0, function (result) {
+  setInterval(function () {
+    console.log(`grid result: ${JSON.stringify(grid_result)}`);
+  }, 1000 * 10)
+
+  let origin = fs.readFileSync('./sample_image/example2/background.png');
+  for (let i = 0; i < 5; i++) {
+    let compare = fs.readFileSync(`./sample_image/example2/compare${i + 1}.png`);
+    image_module.getImageInfo(origin, compare, 1000, 1000, 12, 12, function (result, back, thum) {
       if (result) {
-        cnt ++;
-        console.log(`${cnt}, ${i}, ${result}`);
-        if (cnt === frame_cnt) {
-          let end = new Date().getTime();
-          console.log(`result : ${end - start}`);
-
+        let red_grids = [];
+        let else_grids = [];
+        // console.log(result);
+        for (key in back) {
+          /// grid별 비교
+          let diff = image_module.diffColor2(back[key], thum[key]);
+          let result = -1;
+          if (diff === 'red') {
+            red_grids.push(key);
+            result = image_module.getColorPower(diff, thum[key]);
+          } else if (diff === 'else') {
+            else_grids.push(key);
+            result = image_module.getColorPower(diff, thum[key]);
+          }
+          if (diff !== '-1') {
+            if (!grid_result[key]) {
+              grid_result[key] = [];
+              grid_result[key].push({ color: diff, power: result });
+            } else {
+              grid_result[key].push({ color: diff, power: result });
+            }
+          }
         }
+        console.log(`compare${i + 1}.png result`);
+        console.log(red_grids);
+        console.log(else_grids);
+        // for (let i = 0 ; i < red_grids.length; i ++) {
+        //   image_module.drawImage(compare ,`./diff_result/result_red_${i}.png`, 1000, 1000, 12, 12, red_grids[i])
+        // }
+        // for (let i = 0 ; i < else_grids.length ; i ++) {
+        //   image_module.drawImage(compare ,`./diff_result/result_else_${i}.png`, 1000, 1000, 12, 12, else_grids[i])
+
+        // }
+
+      } else {
+        console.log('pro');
       }
     });
   }
-  // let end = new Date().getTime();
-  // console.log(`result : ${end - start}`);
+  console.log('end');
+
 }
+
+
+
 main();

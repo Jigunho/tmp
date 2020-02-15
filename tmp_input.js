@@ -17,7 +17,10 @@ main = () => {
 
     setInterval(function () {
       for (let i = 0 ; i < ds.length ; i ++) {
-        fs.appendFileSync('tmp_output.txt', `${ds[i]}\n`);
+        let cols = ds[i].split('\t');
+        let img = cols.splice(13,1);
+        fs.appendFileSync('tmp_output.txt', `${cols.join('\t')}\n`);
+        // fs.writeFileSync(`${i}.png`, img);
         console.log('write complete');
       }
       ds = [];
@@ -32,7 +35,10 @@ main = () => {
 
         let cols = datas[i].split('\t');
         if (cols.length < 5) {
+          sock.write('-1')
           continue;
+        } else {
+          sock.write('1')
         }
         console.log(ds[i])
         ds.push(datas[i]);
@@ -41,7 +47,7 @@ main = () => {
 
     });
 
-  }).listen(41000);
+  }).listen(parseInt(config.get('PORT'), 10));
 
 }
 main();
